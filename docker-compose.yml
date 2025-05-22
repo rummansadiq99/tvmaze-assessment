@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: tvshows
+      POSTGRES_PASSWORD: tvshows
+      POSTGRES_DB: tvshows
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    platform: linux/amd64
+    ports:
+      - "4567:4567"
+    environment:
+      DATABASE_URL: postgres://tvshows:tvshows@db:5432/tvshows
+      RACK_ENV: development
+    depends_on:
+      - db
+    volumes:
+      - bundle_cache:/usr/local/bundle
+
+volumes:
+  postgres_data:
+  bundle_cache:

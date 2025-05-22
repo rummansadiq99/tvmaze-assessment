@@ -1,0 +1,11 @@
+.env
+*.log
+*.pid
+*.swp
+.DS_Store
+coverage/
+tmp/
+vendor/
+.bundle/
+.ruby-version
+.ruby-gemset
