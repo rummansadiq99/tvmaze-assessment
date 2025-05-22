@@ -13,11 +13,19 @@ A Ruby service that ingests TV show data from TVMaze API, stores it in PostgreSQ
 
 1. Clone the repository
 2. Install Docker and Docker Compose
-3. Run the application:
+3. Add this .env file:
+
+`
+RACK_ENV=development
+DATABASE_URL=postgres://tvshows:tvshows@localhost:5432/tvshows
+PORT=4567
+`
+
+1. Run the application:
    ```bash
    docker-compose up --build
    ```
-4. The API will be available at `http://localhost:4567`
+2. The API will be available at `http://localhost:4567`
 
 ## API Endpoints
 
