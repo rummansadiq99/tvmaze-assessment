@@ -34,25 +34,4 @@ class TVMazeService
 
     shows
   end
-
-  def fetch_show_details(tvmaze_id)
-    response = self.class.get("/shows/#{tvmaze_id}", @options)
-
-    if response.success?
-      response.parsed_response
-    else
-      raise "Failed to fetch show details for #{tvmaze_id}: #{response.code} - #{response.message}"
-    end
-  end
-
-  private
-
-  def handle_rate_limit(response)
-    if response.code == 429
-      retry_after = response.headers['Retry-After'].to_i
-      sleep retry_after
-      return true
-    end
-    false
-  end
 end
